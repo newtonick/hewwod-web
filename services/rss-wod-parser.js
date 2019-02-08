@@ -17,7 +17,7 @@ const Workout = mongoose.model('Workout', WorkoutSchema, 'Workout');
 let inserts = false;
 let loop_cnt = 0;
 
-mongoose.connect('mongodb://localhost:27017/hew', { useNewUrlParser: true } );
+mongoose.connect('mongodb://hewwod-mongo:27017/hew', { useNewUrlParser: true } );
 
 function fetchAndParse() {
 

@@ -4,7 +4,7 @@ const moment = require('moment-timezone');
 //Setup Mongoose
 const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
-mongoose.connect('mongodb://localhost:27017/hew', { useNewUrlParser: true } );
+mongoose.connect('mongodb://hewwod-mongo:27017/hew', { useNewUrlParser: true } );
 
 const DeviceSettingsSchema = new mongoose.Schema({uuid: String, token: String, notifications: Boolean, wod: Boolean, wodhour: Number, wodminute: Number, updated: Date})
 const DeviceSettings = mongoose.model('DeviceSettings', DeviceSettingsSchema, 'DeviceSettings');

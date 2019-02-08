@@ -9,7 +9,7 @@ app.disable('x-powered-by');
 //Setup Mongoose
 const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
-mongoose.connect('mongodb://localhost:27017/hew', { useNewUrlParser: true } );
+mongoose.connect('mongodb://hewwod-mongo:27017/hew', { useNewUrlParser: true } );
 
 //Setup Schema
 const WorkoutSchema = new mongoose.Schema({date: Date, name: String, text: String, html: String, valid: Boolean, updated: Date});
