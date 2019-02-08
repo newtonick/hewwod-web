@@ -1,0 +1,2 @@
+FROM node:8-alpine
+WORKDIR /home/node/app
