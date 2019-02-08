@@ -131,7 +131,7 @@ echo "adding domain name $domainname to nginx nginx.conf"; sleep 3
 sed -i "s/@@DOMAIN@@/$domainname/g" "$APPDIR/etc/nginx/sites/${domainname}.conf"
 
 echo "updating docker-compose.yml to use $APPDIR/etc/nginx/sites/${domainname}.conf in nginx conf"; sleep 3
-sed -i "s/sites\/hewwod.com.conf/sites\/${domainname}.conf/g" "$APPDIR/docker-compose.yml"
+sed -i "s/sites\/local.conf/sites\/${domainname}.conf/g" "$APPDIR/docker-compose.yml"
 
 mkdir "$APPDIR/keys/dh-param"
 openssl dhparam -out "$APPDIR/keys/dh-param/dhparam-2048.pem" 2048
