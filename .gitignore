@@ -64,3 +64,4 @@ typings/
 keys/
 etc/letsencrypt/
 var/
+package-lock.json

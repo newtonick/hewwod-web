@@ -1,3 +1,6 @@
+//Get Config
+var config = require('../config/config')
+
 const Parser = require('rss-parser');
 const striptags = require('striptags');
 const he = require('he');
@@ -17,7 +20,7 @@ const Workout = mongoose.model('Workout', WorkoutSchema, 'Workout');
 let inserts = false;
 let loop_cnt = 0;
 
-mongoose.connect('mongodb://hewwod-mongo:27017/hew', { useNewUrlParser: true } );
+mongoose.connect(config.db, { useNewUrlParser: true } );
 
 function fetchAndParse() {
 
@@ -25,7 +28,7 @@ function fetchAndParse() {
 
 	(async () => {
 	 
-		let feed = await parser.parseURL('https://hardexerciseworks.com/resource/feed.rss');
+		let feed = await parser.parseURL(config.rss);
 
 		feed.items.forEach(item => {
 
@@ -110,14 +113,14 @@ setInterval(function(){
 
 var apn_options = {
   token: {
-    key: "/home/nklockenga/HEWWOD_AuthKey_HTUV39VAHV.p8",
-    keyId: "HTUV39VAHV",
-    teamId: "ZW85AH743B"
+    key: config.apn.key,
+    keyId: config.apn.keyId,
+    teamId: config.apn.teamId
   },
   production: true
 };
 
-const apn_topic = "com.klockenga.hewwod";
+const apn_topic = config.apn.topic;
 
 const APNDeviceSchema = new mongoose.Schema({token: String, env: String, active: Boolean, valid: Boolean, content: Boolean, status: String, updated: Date});
 const APNDevice = mongoose.model('APNDevice', APNDeviceSchema, 'APNDevice');
