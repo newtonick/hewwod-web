@@ -44,6 +44,8 @@ domainname=${domainname:-hewwod.com}
 echo "adding domain name $domainname to nginx letsencrypt.conf"
 sed -i "s/@@DOMAIN@@/$domainname/g" "$APPDIR/etc/nginx/sites/letsencrypt.conf"
 
+cd "$APPDIR"
+
 docker-compose up -d letsencrypt-nginx-container
 
 echo "Check website $domainname"
@@ -114,8 +116,11 @@ docker-compose down
 
 echo "symbolic links to letsencrypt keys ..."; sleep 3
 
-ln -s "$APPDIR/etc/letsencrypt/live/${domainname}/fullchain.pem" "$APPDIR/keys/letsencrypt/${domainname}/fullchain.pem"
-ln -s "$APPDIR/etc/letsencrypt/live/${domainname}/privkey.pem" "$APPDIR/keys/letsencrypt/${domainname}/privkey.pem"
+mkdir "$APPDIR/keys"
+mkdir "$APPDIR/keys/letsencrypt"
+mkdir "$APPDIR/keys/letsencrypt/${domainname}"
+ln -s "$APPDIR/etc/letsencrypt/live/${domainname}/fullchain.pem" "./keys/letsencrypt/${domainname}/fullchain.pem"
+ln -s "$APPDIR/etc/letsencrypt/live/${domainname}/privkey.pem" "./keys/letsencrypt/${domainname}/privkey.pem"
 
 if [[ $domainname != "hewwod.com" ]]
 then
@@ -128,6 +133,7 @@ sed -i "s/@@DOMAIN@@/$domainname/g" "$APPDIR/etc/nginx/sites/${domainname}.conf"
 echo "updating docker-compose.yml to use $APPDIR/etc/nginx/sites/${domainname}.conf in nginx conf"; sleep 3
 sed -i "s/sites\/hewwod.com.conf/sites\/${domainname}.conf/g" "$APPDIR/docker-compose.yml"
 
+mkdir "$APPDIR/keys/dh-param"
 openssl dhparam -out "$APPDIR/keys/dh-param/dhparam-2048.pem" 2048
 
 npm install

@@ -3,6 +3,7 @@ version: '3'
 services:
 
   hewwod-nginx:
+    container_name: hewwod-nginx
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-nginx
@@ -14,7 +15,7 @@ services:
       - ./keys/letsencrypt/hewwod.com/privkey.pem:/etc/letsencrypt/live/hewwod.com/privkey.pem
       - ./static/letsencrypt:/data/letsencrypt
     depends_on:
-      - hewwod-api"
+      - "hewwod-api"
     ports:
       - "80:80"
       - "443:443"
@@ -23,6 +24,7 @@ services:
     restart: always
 
   hewwod-mongo:
+    container_name: hewwod-mongo
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-mongo
@@ -35,30 +37,34 @@ services:
     restart: always
 
   hewwod-api:
+    container_name: hewwod-api
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-api
     volumes:
       - ./app:/home/node/app
+      - ./node_modules:/home/node/app/node_modules
     environment:
       - NODE_ENV=production
-      - NODE_PATH=../node_modules:$NODE_PATH
     command: "node api.js"
     depends_on:
       - "hewwod-mongo"
+    ports:
+      - "3001:3001"
     networks:
       - app-network
     restart: always
 
   hewwod-rss:
+    container_name: hewwod-rss
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-rss
     volumes:
-    - ./services:/home/node/app
+      - ./services:/home/node/app
+      - ./node_modules:/home/node/app/node_modules
     environment:
       - NODE_ENV=production
-      - NODE_PATH=../node_modules:$NODE_PATH
     command: "node rss-wod-parser.js"
     depends_on:
       - "hewwod-mongo"
@@ -67,14 +73,15 @@ services:
     restart: always
 
   hewwod-notifications:
+    container_name: hewwod-notifications
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-notifications
     volumes:
-    - ./services:/home/node/app
+      - ./services:/home/node/app
+      - ./node_modules:/home/node/app/node_modules
     environment:
       - NODE_ENV=production
-      - NODE_PATH=../node_modules:$NODE_PATH
     command: "node notifications.js"
     depends_on:
       - "hewwod-mongo"

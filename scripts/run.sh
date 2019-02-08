@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#curl -sL https://github.com/newtonick/hewwod-server-init/raw/master/setup.sh | bash -s "hewwod.com"
+#curl -sL https://github.com/newtonick/hewwod-web/raw/master/scripts/run.sh| bash -s "hewwod.com"
 
 curl -LJO https://github.com/newtonick/hewwod-web/raw/master/scripts/setup.sh
 chmod u+x setup.sh
