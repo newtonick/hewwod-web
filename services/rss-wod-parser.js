@@ -9,6 +9,9 @@ const apn = require('apn');
 
 let parser = new Parser();
 
+var sleep = require('sleep');
+sleep.sleep(5); //5 seconds delay for mongo setup
+
 //Setup Mongoose
 const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);

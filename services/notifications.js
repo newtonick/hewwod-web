@@ -1,6 +1,9 @@
 const apn = require('apn');
 const moment = require('moment-timezone');
 
+var sleep = require('sleep');
+sleep.sleep(5); //5 seconds delay for mongo setup
+
 //Setup Mongoose
 const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
