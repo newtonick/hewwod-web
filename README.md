@@ -69,6 +69,24 @@ Things left to do:
 - cron job for certbot (ssl renewal)
 - restore backup from existing database to mongodb
 
+### Backup and Restore Mongo DB
+
+On the database to backup
+
+```mongodump -d hew -o mongobackup```
+
+then
+
+```tar cvzf hew.mongo.backup.tar.gz mongobackup```
+
+then copy to server to restore data to
+
+```tar xvzf hew.mongo.backup.tar.gz```
+
+and restore to new database (requires installing mongodb)
+
+```mongorestore -d hew mongobackup/hew```
+
 ### Local Setup
 
 ```git clone https://github.com/newtonick/hewwod-web.git```
