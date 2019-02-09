@@ -1,5 +1,5 @@
 //Get Config
-var config = require('./config/config')
+var config = require('./config/config');
 
 //Setup Express and App
 const express = require('express');

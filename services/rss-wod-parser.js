@@ -1,5 +1,5 @@
 //Get Config
-var config = require('../config/config')
+var config = require('./config/config');
 
 const Parser = require('rss-parser');
 const striptags = require('striptags');
