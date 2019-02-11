@@ -1,3 +1,6 @@
+//Get Config
+var config = require('./config/config');
+
 const apn = require('apn');
 const moment = require('moment-timezone');
 
@@ -7,7 +10,7 @@ sleep.sleep(5); //5 seconds delay for mongo setup
 //Setup Mongoose
 const mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
-mongoose.connect('mongodb://hewwod-mongo:27017/hew', { useNewUrlParser: true } );
+mongoose.connect(config.db, { useNewUrlParser: true } );
 
 const DeviceSettingsSchema = new mongoose.Schema({uuid: String, token: String, notifications: Boolean, wod: Boolean, wodhour: Number, wodminute: Number, updated: Date})
 const DeviceSettings = mongoose.model('DeviceSettings', DeviceSettingsSchema, 'DeviceSettings');
@@ -20,14 +23,14 @@ const Workout = mongoose.model('Workout', WorkoutSchema, 'Workout');
 
 var apn_options = {
   token: {
-    key: "/home/nklockenga/HEWWOD_AuthKey_HTUV39VAHV.p8",
-    keyId: "HTUV39VAHV",
-    teamId: "ZW85AH743B"
+    key: config.apn.key,
+    keyId: config.apn.keyId,
+    teamId: config.apn.teamId
   },
   production: true
 };
 
-const apn_topic = "com.klockenga.hewwod";
+const apn_topic = config.apn.topic;
 
 setInterval(function(){
 
