@@ -79,7 +79,7 @@ certonly --webroot \
 ${letsemailcommand} --agree-tos \
 --webroot-path=/data/letsencrypt \
 --staging \
--d ${domainname} -d www.${domainname}
+-d ${domainname} -d www.${domainname} -d api.${domainname}
 
 read -p "Did dry run complete successfully? (Y/n)" diddryrunwork
 
@@ -100,7 +100,7 @@ certbot/certbot \
 certonly --webroot \
 ${letsemailcommand} --agree-tos \
 --webroot-path=/data/letsencrypt \
--d ${domainname} -d www.${domainname}
+-d ${domainname} -d www.${domainname} -d api.${domainname}
 
 read -p "Did everything run successfully? (Y/n)" didrunwork
 
