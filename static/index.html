@@ -1,0 +1,244 @@
+<!doctype html>
+<html class="no-js" lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>HEW WOD</title>
+
+		<meta name="description" content="Hard Exercise Works Workout of the Day">
+		<meta name="author" content="HEW WOD">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+		<script src="packery.pkgd.min.js"></script>
+
+		<style>
+			body { text-align: center; 
+				font-family: Helvetica, Arial, sans-serif;
+				font-weight: lighter; font-style: normal;
+				background-color: #2C5B89;
+				overscroll-behavior: none;
+			}
+			#page {display: inline-block; margin-left: 10px; margin-top: 50px;}
+			.card {text-align: center;}
+			#firstcard .workout-title {background-color: #333333;}
+			.workout-title { margin: 0; padding: .8em .5em .3em .5em; background-color: #555555; color: white; font-size: 1.4em; border-top-right-radius: 5px; border-top-left-radius: 5px; font-weight: bold; text-transform: uppercase;}
+			#firstcard .workout-date {background-color: #333333;}
+			.workout-date {margin: 0; padding: 0 0 .7em 0; font-size: .8em; color:white; background-color: #555555; font-weight: lighter;}
+			.workout-card {padding: 1em 0 1em 0; background-color: #8DC63F; color: white; font-weight: normal; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; font-weight: normal;}
+			.grid-item { text-align: center; margin: 10px 10px 0 0; }
+
+			#todayswod {width:460px; margin: 1em auto 4em auto;}
+			#todayswod .card {margin-right: 10px;}
+
+			.underline {text-decoration: underline;}
+
+			#join {
+				    width: 460px;
+				    display: block;
+				    margin: 2em auto 2em auto;
+				    color: white;
+			}
+			#join .card {padding: 40px; margin-right: 10px; background-color: #262626; border-radius: 5px;}
+
+			header {
+				background: #53AB3B;
+    			box-shadow: #333 0px 0px 20px;
+			    height: 60px;
+			    width: 100%;
+			    line-height: 16px;
+			    left: 0;
+			    top: 0;
+			    position: fixed;
+			    z-index: 2;
+			    align-items: center;
+			    -webkit-transform: translateZ(0);
+			}
+
+			nav {display: inline;}
+
+			nav a {
+				border: solid rgba(255, 255, 255, 0.2);
+			    border-width: 3px 0;
+			    color: white;
+			    text-decoration: none;
+			    padding: 12px;
+			    width: 100px;
+			    transition: background .2s ease-in-out, box-shadow .4s, color .5s, border 1s;
+			    float: right;
+			    margin-right: 12px;
+			    margin-left: 12px;
+			    font-size: 20px;
+			    margin-top: 7px;
+			}
+
+			header a {
+				color: white;
+			    text-decoration: none;
+			}
+
+			#join a {
+				color: #85BEFF;
+				text-decoration: none;
+			}
+
+			#wodtitle {width: 300px; display: block; margin: 20px auto 0 auto; color: white; font-size: 22px; font-weight: bold;}
+
+			header #hewicon {display:inline;}
+			header #hewicon img {display: inline; height: 55px; width: 55px; float: left;}
+
+			footer {height: 400px;}
+
+			@media (max-width: 479px ) and (min-width: 200px) {
+				#page {width: 99%; margin-left: 0px;} .grid-item {width: 100%;}
+				#todayswod .card {margin: auto;}
+				#todayswod {margin: 1em auto 0 auto; width: 100%;}
+				.workout-title {font-size: 1.3em;}
+				#join .card {margin: auto;}
+				#join {margin: 1em auto 1em auto; width: 100%;}
+				#wodtitle {width: 180px; font-size: 18px;}
+				nav a {font-size: 12px; width: 40px;  padding: 12px 5px 13px 5px; margin-top: 7px; margin-right: 7px;}
+			}
+			@media (max-width: 376px ) and (min-width: 200px ) {
+				#wodtitle {width: 170px; font-size: 18px; margin-top: 25px;}
+				nav a {font-size: 12px; width: 40px; padding: 12px 5px 13px 5px; margin-top: 7px; margin-right: 7px;}
+			}
+			@media (max-width: 920px) and (min-width: 480px) {
+				#page {width: 460px; margin-left: 0px;} .grid-item {width: 450px;}
+				#todayswod {margin: 1em auto 0 auto;}
+				.workout-title {font-size: 1.3em;}
+				#wodtitle {width: 180px; font-size: 18px; margin-top: 25px;}
+				nav a {font-size: 12px; width: 40px;  padding: 12px 5px 13px 5px; margin-top: 7px; margin-right: 7px;}
+			}
+			@media (max-width: 1380px) and (min-width: 921px) {
+				#page {width: 920px;} .grid-item {width: 450px;}
+			}
+			@media (min-width: 1381px) {
+				#page {width: 1380px;} .grid-item {width: 450px;}
+			}
+		</style>
+
+	</head>
+	<body style="display:none;" id="tippytop">
+		<header>
+			<a href="https://hewwod.com" id="hewicon"><img src="images/hew-icon.png"></a>
+            <nav>
+                <a href="#get">App</a>
+            </nav>
+            <div id="wodtitle"><a href="#tippytop">Workout of the Day</a></div>
+        </header>
+		<div id="page">
+			<div id="todayswod"></div>
+			<div class="grid" id="oldworkouts"></div>
+			<section id="get" style="height: 60px;"></section>
+			<div id="join">
+				<div class="card" style="font-size: 22px;">
+		            <p class="meds">Join the TestFlight beta!</p>
+		            <p>You can get the HEW WOD app by joining the <a href="https://testflight.apple.com/join/BEoFn8kw">TestFlight beta</a>.</p>
+		            <br>
+		            <a href="https://testflight.apple.com/join/BEoFn8kw">
+		                <img src="images/testflight.png" class="hoverscale">
+		            </a>
+		        </div>
+        	</div>
+		</div>
+		<footer></footer>
+	<script>
+		function ajax_get(url, callback) {
+		    var xmlhttp = new XMLHttpRequest();
+		    xmlhttp.onreadystatechange = function() {
+		        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		            console.log('responseText:' + xmlhttp.responseText);
+		            try {
+		                var data = JSON.parse(xmlhttp.responseText);
+		            } catch(err) {
+		                console.log(err.message + " in " + xmlhttp.responseText);
+		                return;
+		            }
+		            callback(data);
+		        }
+		    };
+		 
+		    xmlhttp.open("GET", url, true);
+		    xmlhttp.send();
+		}
+
+		function buildCard(workout) {
+
+			const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+			var workoutDate = new Date(workout.date);
+			var today = new Date();
+			var yesterday = new Date();
+			yesterday.setDate(today.getDate()-1); 
+
+			var workoutDateStr = monthNames[workoutDate.getMonth()] + " " + workoutDate.getDate() + ", " + workoutDate.getFullYear();
+
+			if(workoutDate.toDateString() == today.toDateString()) {
+				workoutDateStr = "Today";
+			} else if (workoutDate.toDateString() == yesterday.toDateString()) {
+				workoutDateStr = "Yesterday";
+			}
+
+			var workoutText = workout.text;
+
+			workoutText = workoutText.replace(/\*\*(.+)\*\*/g, '<strong>$1</strong>');
+			workoutText = workoutText.replace(/__(.+)__/g, '<span class="underline">$1</span>');
+			workoutText = workoutText.replace(/(?:\r\n|\r|\n)/g, '<br>');
+
+			workoutText = workoutText.replace(/\*\*(.+)\*\*/g, '<strong>$1</strong>');
+			workoutText = workoutText.replace(/__(.+)__/g, '<span class="underline">$1</span>');
+			workoutText = workoutText.replace(/\*\*(.+)\*\*/g, '<strong>$1</strong>');
+			workoutText = workoutText.replace(/__(.+)__/g, '<span class="underline">$1</span>');
+			workoutText = workoutText.replace(/\*\*(.+)\*\*/g, '<strong>$1</strong>');
+			workoutText = workoutText.replace(/__(.+)__/g, '<span class="underline">$1</span>');
+
+			var htmlCard = '<div class="card"><h5 class="card-title workout-title">' +
+							workout.name + '</h5>' +
+							'<h6 class="card-subtitle workout-date">' + 
+							workoutDateStr + '</h6>' + 
+							'<div class="card-body workout-card">' + 
+							workoutText+ '</div></div>';
+
+			return htmlCard;
+		}
+		
+		//var data = {"status":"success","workouts":[{"_id":"5c652f029a9938819a657fc1","date":"2019-02-14T09:00:00.000Z","name":"KISSY, KISSY, HAPPY VALENTINES DAY HEWMAN'S!  (BRING IN YOUR SWEETHEART FOR THIS WOD)","text":"__**“Partner Workout”**__\n__**2 Rounds or 25 minutes**__\n40 Ring Rows\nResting Partner: Squat Hold\n\r\n400 Meter Row\nResting Partner: Double KB Hold\n\r\n40 Medicine Ball Sit-Ups\n\r\n400 Meter Run\n(4x100m Sprint Relay)\n\r\n40 Rollouts\nResting Partner: Wall Sit","updated":"2019-02-14T09:04:02.606Z"},{"_id":"5c63ddaa99b9e505a8323ced","date":"2019-02-13T09:00:00.000Z","name":"2 PARTS WOD","text":"__**10 minutes**__\n**Odd Minutes:** Max Wall Ball Shots\n**Even Minutes:** Max Box Jumps\n\r\nRest 4 Minutes\n\r\n__**10 Minutes**__\n**Odd Minutes:** Max Dumbbell Hang Power Snatches\n**Even Minutes:** Max Overhead Plate Lunges","updated":"2019-02-13T09:04:42.153Z"},{"_id":"5c628c2a99b9e505a8323b8f","date":"2019-02-12T09:00:00.000Z","name":"6 ROUNDS","text":"2 Man Makers (45/25 pounds)\n12 Weighted Ring Dips\n2 Rope Climbs\n24 Kettlebell Figure Eight Uppercuts (53/35 pounds)","updated":"2019-02-12T09:04:42.024Z"},{"_id":"5c613aa999b9e505a8323a31","date":"2019-02-11T09:00:00.000Z","name":"DOUBLE TROUBLE FOR TIME","text":"__**“Partner Double Gideon”**__\n__**42-30-18**__\nPower Clean\nPush Press\nOverhead Squat\n\r\n__**“Partner Double Lucifer”**__\n__**42-30-18**__\nThrusters\nBurpees","updated":"2019-02-11T09:04:41.259Z"},{"_id":"5c5e97a899b9e505a8323775","date":"2019-02-09T09:00:00.000Z","name":"SURPRISE SATURDAY","text":"It's another Surprise Saturday with a great workout in store for you today.  Have a great weekend HEWman's!","updated":"2019-02-09T09:04:40.427Z"},{"_id":"5c5d462799b9e505a8323617","date":"2019-02-08T09:00:00.000Z","name":"TEAMS OF 3","text":"__**Teams Of 3**__\n__**As Many Rounds As Possible in 25 minutes:**__\n100 Burpees Over Partner\n80 Pull-ups\n60 Weighted Box Step Ups (45/25 pounds)\n40 Deadlifts (225/155 pounds)\n\r\n*One Partner is always running 200 meters","updated":"2019-02-08T09:04:39.990Z"},{"_id":"5c5bf4a799b9e505a83234b9","date":"2019-02-07T09:00:00.000Z","name":"2 PARTS WOD","text":"__**Part 1**__\n__**Every Minute on the Minute**__\n__**(10 minutes)\n**__1 Hang Power Clean \n2 Front Squats\n1 Push Jerk\n\r\n__**Part 2**__\n__**2 Rounds For Time:**__\n50 Double Unders\n21 Push Jerks\n50 Double Unders\n15 Front Squats\n50 Double Unders\n9 Hang Power Cleans","updated":"2019-02-07T09:04:39.614Z"},{"_id":"5c5aa32799b9e505a832335b","date":"2019-02-06T09:00:00.000Z","name":"3 ROUNDS","text":"(90 Seconds Per Station)\n\r\n__**Station #1:**__ Kettlebell Swings\n__**Station #2:**__ Toes to Bar\n__**Station #3:**__ Calorie Row\n__**Station #4:**__ Devil’s Press\n__**Station #5:**__ Plank Hold\n\r\n*90 Second rest after each round","updated":"2019-02-06T09:04:39.224Z"},{"_id":"5c5951a799b9e505a83231fd","date":"2019-02-05T09:00:00.000Z","name":"5 X 4 MINUTE ROUNDS","text":"4 Power Snatches (155/105 pounds)\n8 Weighted Pistol Squats (53/35 pounds)\n12 Push-Ups\n\r\n*1 Minute rest between rounds. Pick up where you left off.","updated":"2019-02-05T09:04:39.459Z"},{"_id":"5c58002699b9e505a83230a9","date":"2019-02-04T09:00:00.000Z","name":"FOR TIME","text":"200-meter Run\n20 Mountain Climbers\n2 Rope Climbs\n20 Double Unders\n400-meter Run\n40 Mountain Climbers\n4 Rope Climbs\n40 Double Unders\n800-meter Run\n80 Mountain Climbers\n8 Rope Climbs\n80 Double Unders","updated":"2019-02-04T09:04:38.266Z"}],"cached":false};
+
+		ajax_get('https://hewwod.com/api/1.0/workouts', function(data) {
+		  	
+			data.workouts.forEach(function(workout, idx){
+				var cardHTML = buildCard(workout);
+
+				if(idx == 0){
+					document.getElementById('todayswod').innerHTML = cardHTML;
+					document.getElementById('todayswod').firstChild.setAttribute("id", "firstcard");
+				} else {
+					document.getElementById('oldworkouts').innerHTML += '<div class="grid-item">' + cardHTML + '</div>';
+				}
+
+			});
+
+			var elem = document.querySelector('.grid');
+			var pckry = new Packery( elem, {
+			  // options
+			  itemSelector: '.grid-item',
+			  gutter: 0
+			});
+
+			// element argument can be a selector string
+			//   for an individual element
+			var pckry = new Packery( '.grid', {
+				transitionDuration: 0
+			  // options
+			});
+
+		  	document.body.style.display = "block";
+			pckry.layout();
+		});
+
+	</script>
+	</body>
+</html>
