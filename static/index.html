@@ -24,10 +24,10 @@
 			#page {display: inline-block; margin-left: 10px; margin-top: 50px;}
 			.card {text-align: center;}
 			#firstcard .workout-title {background-color: #333333;}
-			.workout-title { margin: 0; padding: .8em .5em .3em .5em; background-color: #555555; color: white; font-size: 1.4em; border-top-right-radius: 8px; border-top-left-radius: 8px; font-weight: bold; text-transform: uppercase;}
+			.workout-title { margin: 0; padding: .8em .5em .3em .5em; background-color: #555555; color: white; font-size: 1.1em; border-top-right-radius: 8px; border-top-left-radius: 8px; font-weight: bold; text-transform: uppercase;}
 			#firstcard .workout-date {background-color: #333333;}
 			.workout-date {margin: 0; padding: 0 0 .7em 0; font-size: .8em; color:white; background-color: #555555; font-weight: lighter;}
-			.workout-card {padding: 1em 0 1em 0; background-color: #8DC63F; color: white; font-weight: normal; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; font-weight: normal;}
+			.workout-card {padding: 1em .5em 1em .5em; background-color: #8DC63F; color: white; font-weight: normal; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; font-weight: normal;}
 			.grid-item { text-align: center; margin: 10px 10px 0 0; }
 
 			#todayswod {width:460px; margin: 1em auto 4em auto;}
@@ -84,20 +84,20 @@
 				text-decoration: none;
 			}
 
-			#wodtitle {width: 300px; display: block; margin: 20px auto 0 auto; color: white; font-size: 22px; font-weight: bold;}
+			#wodtitle {width: 300px; display: block; margin: 20px auto 0 auto; color: white; font-size: 20px; font-weight: bold;}
 
 			header #hewicon {display:inline;}
 			header #hewicon img {display: inline; height: 55px; width: 55px; float: left;}
 
-			footer {height: 400px;}
+			footer {height: 10px;}
 
 			@media (max-width: 479px ) and (min-width: 200px) {
 				#page {width: 99%; margin-left: 0px;} .grid-item {width: 100%;}
 				#todayswod .card {margin: auto;}
 				#todayswod {margin: 1em auto 0 auto; width: 100%;}
-				.workout-title {font-size: 1.3em;}
+				.workout-title {font-size: 1.1em;}
 				#join .card {margin: auto;}
-				#join {margin: 1em auto 1em auto; width: 100%;}
+				#join {margin: .5em auto 1em auto; width: 100%;}
 				#wodtitle {width: 180px; font-size: 18px;}
 				nav a {font-size: 12px; width: 40px;  padding: 12px 5px 13px 5px; margin-top: 7px; margin-right: 7px;}
 			}
@@ -132,9 +132,9 @@
 		<div id="page">
 			<div id="todayswod"></div>
 			<div class="grid" id="oldworkouts"></div>
-			<section id="get" style="height: 60px;"></section>
+			<section id="get"></section>
 			<div id="join">
-				<div class="card" style="font-size: 22px;">
+				<div class="card" style="font-size: 18px;">
 		            <p class="meds">Join the TestFlight beta!</p>
 		            <p>You can get the HEW WOD app by joining the <a href="https://testflight.apple.com/join/BEoFn8kw">TestFlight beta</a>.</p>
 		            <br>
@@ -207,7 +207,7 @@
 		
 		//var data = {"status":"success","workouts":[{"_id":"5c652f029a9938819a657fc1","date":"2019-02-14T09:00:00.000Z","name":"KISSY, KISSY, HAPPY VALENTINES DAY HEWMAN'S!  (BRING IN YOUR SWEETHEART FOR THIS WOD)","text":"__**“Partner Workout”**__\n__**2 Rounds or 25 minutes**__\n40 Ring Rows\nResting Partner: Squat Hold\n\r\n400 Meter Row\nResting Partner: Double KB Hold\n\r\n40 Medicine Ball Sit-Ups\n\r\n400 Meter Run\n(4x100m Sprint Relay)\n\r\n40 Rollouts\nResting Partner: Wall Sit","updated":"2019-02-14T09:04:02.606Z"},{"_id":"5c63ddaa99b9e505a8323ced","date":"2019-02-13T09:00:00.000Z","name":"2 PARTS WOD","text":"__**10 minutes**__\n**Odd Minutes:** Max Wall Ball Shots\n**Even Minutes:** Max Box Jumps\n\r\nRest 4 Minutes\n\r\n__**10 Minutes**__\n**Odd Minutes:** Max Dumbbell Hang Power Snatches\n**Even Minutes:** Max Overhead Plate Lunges","updated":"2019-02-13T09:04:42.153Z"},{"_id":"5c628c2a99b9e505a8323b8f","date":"2019-02-12T09:00:00.000Z","name":"6 ROUNDS","text":"2 Man Makers (45/25 pounds)\n12 Weighted Ring Dips\n2 Rope Climbs\n24 Kettlebell Figure Eight Uppercuts (53/35 pounds)","updated":"2019-02-12T09:04:42.024Z"},{"_id":"5c613aa999b9e505a8323a31","date":"2019-02-11T09:00:00.000Z","name":"DOUBLE TROUBLE FOR TIME","text":"__**“Partner Double Gideon”**__\n__**42-30-18**__\nPower Clean\nPush Press\nOverhead Squat\n\r\n__**“Partner Double Lucifer”**__\n__**42-30-18**__\nThrusters\nBurpees","updated":"2019-02-11T09:04:41.259Z"},{"_id":"5c5e97a899b9e505a8323775","date":"2019-02-09T09:00:00.000Z","name":"SURPRISE SATURDAY","text":"It's another Surprise Saturday with a great workout in store for you today.  Have a great weekend HEWman's!","updated":"2019-02-09T09:04:40.427Z"},{"_id":"5c5d462799b9e505a8323617","date":"2019-02-08T09:00:00.000Z","name":"TEAMS OF 3","text":"__**Teams Of 3**__\n__**As Many Rounds As Possible in 25 minutes:**__\n100 Burpees Over Partner\n80 Pull-ups\n60 Weighted Box Step Ups (45/25 pounds)\n40 Deadlifts (225/155 pounds)\n\r\n*One Partner is always running 200 meters","updated":"2019-02-08T09:04:39.990Z"},{"_id":"5c5bf4a799b9e505a83234b9","date":"2019-02-07T09:00:00.000Z","name":"2 PARTS WOD","text":"__**Part 1**__\n__**Every Minute on the Minute**__\n__**(10 minutes)\n**__1 Hang Power Clean \n2 Front Squats\n1 Push Jerk\n\r\n__**Part 2**__\n__**2 Rounds For Time:**__\n50 Double Unders\n21 Push Jerks\n50 Double Unders\n15 Front Squats\n50 Double Unders\n9 Hang Power Cleans","updated":"2019-02-07T09:04:39.614Z"},{"_id":"5c5aa32799b9e505a832335b","date":"2019-02-06T09:00:00.000Z","name":"3 ROUNDS","text":"(90 Seconds Per Station)\n\r\n__**Station #1:**__ Kettlebell Swings\n__**Station #2:**__ Toes to Bar\n__**Station #3:**__ Calorie Row\n__**Station #4:**__ Devil’s Press\n__**Station #5:**__ Plank Hold\n\r\n*90 Second rest after each round","updated":"2019-02-06T09:04:39.224Z"},{"_id":"5c5951a799b9e505a83231fd","date":"2019-02-05T09:00:00.000Z","name":"5 X 4 MINUTE ROUNDS","text":"4 Power Snatches (155/105 pounds)\n8 Weighted Pistol Squats (53/35 pounds)\n12 Push-Ups\n\r\n*1 Minute rest between rounds. Pick up where you left off.","updated":"2019-02-05T09:04:39.459Z"},{"_id":"5c58002699b9e505a83230a9","date":"2019-02-04T09:00:00.000Z","name":"FOR TIME","text":"200-meter Run\n20 Mountain Climbers\n2 Rope Climbs\n20 Double Unders\n400-meter Run\n40 Mountain Climbers\n4 Rope Climbs\n40 Double Unders\n800-meter Run\n80 Mountain Climbers\n8 Rope Climbs\n80 Double Unders","updated":"2019-02-04T09:04:38.266Z"}],"cached":false};
 
-		ajax_get('https://hewwod.com/api/1.0/workouts', function(data) {
+		ajax_get('https://hewwod.com/api/1.0/workouts&src=web', function(data) {
 		  	
 			data.workouts.forEach(function(workout, idx){
 				var cardHTML = buildCard(workout);
