@@ -27,8 +27,8 @@ const APNDevice = mongoose.model('APNDevice', APNDeviceSchema, 'APNDevice');
 const DeviceSettingsSchema = new mongoose.Schema({uuid: String, token: String, notifications: Boolean, wod: Boolean, wodhour: Number, wodminute: Number, wodesthour: Number, wodestminute: Number, timezone: String, updated: Date})
 const DeviceSettings = mongoose.model('DeviceSettings', DeviceSettingsSchema, 'DeviceSettings');
 
-const ActivityLogScheme = new mongoose.Schema({activity: String, date: Date, uuid: String, source: String});
-const ActivityLog = mongoose.model('ActivityLog', ActivityLogScheme, 'ActivityLog');
+const ActivityLogSchema = new mongoose.Schema({activity: String, date: Date, uuid: String, source: String});
+const ActivityLog = mongoose.model('ActivityLog', ActivityLogSchema, 'ActivityLog');
 
 let workout_cache_expires = 1 * 30 * 1000; // 30 Seconds
 let workout_cache_content;
@@ -46,10 +46,10 @@ app.get('/api/1.0/workouts', function(req, res) {
 
 	var src = "none";
 	if (typeof req.query.src !== 'undefined') {
-		uuid = req.query.src;
+		src = req.query.src;
 	}
 
-	var activity = new ActivityLog({activity: workouts, date: new Date(), uuid: uuid, source: src });
+	var activity = new ActivityLog({activity: "workouts", date: new Date(), uuid: uuid, source: src });
 	activity.save(function (err, activity) {
 		if (err) return console.error(err);
 	});
@@ -61,7 +61,7 @@ app.get('/api/1.0/workouts', function(req, res) {
 	}
 
 	//get workouts from db
-	Workout.find({valid: true}, {name: 1, text: 1, date: 1, updated: 1, _id: 1}).sort({'date': -1}).limit(10).exec(function(err,Workouts){
+	Workout.find({valid: true}, {name: 1, text: 1, date: 1, updated: 1, _id: 1}).sort({'date': -1}).limit(20).exec(function(err,Workouts){
 		if(err) return console.error(err);
 		//console.log("workouts returned");
 
