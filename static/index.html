@@ -10,7 +10,7 @@
 		<meta name="author" content="HEW WOD">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
 		<script src="packery.pkgd.min.js"></script>
 
@@ -42,6 +42,21 @@
 				    color: white;
 			}
 			#join .card {padding: 40px; margin-right: 10px; background-color: #262626; border-radius: 5px;}
+
+			#disclaimer {
+				color: #CCC;
+				font-size: 12px;
+				font-weight: lighter;
+				width: 400px;
+				margin: 1em auto 1em auto;
+				text-align: justify;
+				text-justify: inter-word;
+			}
+
+			#disclaimer a {
+				text-decoration: underline;
+				color: #CCC;
+			}
 
 			header {
 				background: #53AB3B;
@@ -98,6 +113,7 @@
 				.workout-title {font-size: 1.1em;}
 				#join .card {margin: auto;}
 				#join {margin: .5em auto 1em auto; width: 100%;}
+				#disclaimer {width: 100%;}
 				#wodtitle {width: 180px; font-size: 18px;}
 				nav a {font-size: 12px; width: 40px;  padding: 12px 5px 13px 5px; margin-top: 7px; margin-right: 7px;}
 			}
@@ -144,7 +160,11 @@
 		        </div>
         	</div>
 		</div>
-		<footer></footer>
+		<footer>
+			<div id="disclaimer">
+				Please note this website and app have <strong>no official association</strong> with <a href="https://hardexerciseworks.com/">Hard Exercise Works</a>. This website and app source publicly available information from the hardexerciseworks.com WOD RSS feed to display daily workouts. No monetary value in gained from this site or app from sharing of this publicly available information. The information contained in this website and app is for general information purposes only. I make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk.
+			</div>
+		</footer>
 	<script>
 		function ajax_get(url, callback) {
 		    var xmlhttp = new XMLHttpRequest();
@@ -238,6 +258,8 @@
 		  	document.body.style.display = "block";
 			pckry.layout();
 		});
+
+		setTimeout(function(){ window.location.reload(true);}, 1000*60*60*8); // reload page after 8 hours
 
 	</script>
 	</body>
