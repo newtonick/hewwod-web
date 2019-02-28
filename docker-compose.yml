@@ -18,6 +18,12 @@ services:
       - ./var/log/nginx:/var/log/nginx
     depends_on:
       - "hewwod-api"
+    deploy:
+      resources:
+        limits:
+          memory: 20M
+        reservations:
+          memory: 10M
     ports:
       - "80:80"
       - "443:443"
@@ -30,6 +36,14 @@ services:
     build:
       context: ./dockerfiles
       dockerfile: Dockerfile-mongo
+    deploy:
+      resources:
+        limits:
+          memory: 120M
+          cpus: '0.50'
+        reservations:
+          memory: 80M
+          cpus: '0.25'
     ports:
       - "27017:27017"
     expose:
@@ -52,6 +66,14 @@ services:
     command: "node api.js"
     depends_on:
       - "hewwod-mongo"
+    deploy:
+      resources:
+        limits:
+          memory: 120M
+          cpus: '0.50'
+        reservations:
+          memory: 100M
+          cpus: '0.25'
     ports:
       - "3001:3001"
     networks:
@@ -73,6 +95,14 @@ services:
     command: "node rss-wod-parser.js"
     depends_on:
       - "hewwod-mongo"
+    deploy:
+      resources:
+        limits:
+          memory: 120M
+          cpus: '0.50'
+        reservations:
+          memory: 100M
+          cpus: '0.25'
     networks:
       - app-network
     restart: always
@@ -92,6 +122,14 @@ services:
     command: "node notifications.js"
     depends_on:
       - "hewwod-mongo"
+    deploy:
+      resources:
+        limits:
+          memory: 120M
+          cpus: '0.50'
+        reservations:
+          memory: 100M
+          cpus: '0.25'
     networks:
       - app-network
     restart: always
