@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "apn": "^2.2",
+    "cheerio": "^1.0.0-rc.2",
     "express": "^4.16",
     "he": "^1.2",
     "moment-timezone": "^0.5",

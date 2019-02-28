@@ -2,7 +2,7 @@
 
 module.exports = {
     db: "mongodb://hewwod-mongo:27017/hew",
-    rss: "https://hardexerciseworks.com/resource/feed.rss",
+    rss: "https://www.hewfitness.com/yourworkout?format=RSS",
     apn: {
     	topic: "com.klockenga.hewwod",
     	key: "./keys/HEWWOD_AuthKey_HTUV39VAHV.p8",

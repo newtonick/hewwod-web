@@ -6,6 +6,7 @@ const striptags = require('striptags');
 const he = require('he');
 const moment = require('moment-timezone')
 const apn = require('apn');
+const $ = require('cheerio');
 
 let parser = new Parser();
 
@@ -35,61 +36,73 @@ function fetchAndParse() {
 
 		feed.items.forEach(item => {
 
-			name = item.title.replace(/:/g,"").toUpperCase();
-			html = item.content;
+			if(loop_cnt < 2) {
 
-			// strip all tags that are not span, string, br, or p
-			text = striptags(html, ["span", "strong", "br", "p"]);
+				html = item.content;
 
-			// replace all br tags with @@@@ (later for newline)
-			text = striptags(text, ["span", "strong", "p"], "@@@@");
+				name = $('h2', html).text().toUpperCase();
 
-			// replace the closing p tag with @@@@ (later for newline)
-			text = text.replace(/<\/p>/g, "@@@@");
+				if(name == "") {
+					name = "UNKNOWN";
+				}
 
-			// strip all tags keeping only span and strong
-			text = striptags(text, ["span", "strong"]);
+				//remove title
+				html = html.replace(/<h2>.*<\/h2>/g, "");
 
-			// strip out strong (keeping span) and replace strong with **
-			text = striptags(text, ["span"], "**");
+				// strip all tags that are not span, string, br, or p
+				text = striptags(html, ["span", "strong", "br", "p"]);
 
-			// find a replace span with underline tags with __
-			text = text.replace(/(\<span style\=\"text-decoration: underline;\"\>)(.*?)\<\/span\>/g, "__$2__");
+				// replace all br tags with @@@@ (later for newline)
+				text = striptags(text, ["span", "strong", "p"], "@@@@");
 
-			//makings sure any remaining html tags are completely gone
-			text = striptags(text, []);
+				// replace the closing p tag with @@@@ (later for newline)
+				text = text.replace(/<\/p>/g, "@@@@");
 
-			// removing any trailing (extra) spaces
-			text = text.replace(/\ @@@@/g, "@@@@");
-			text = text.replace(/\ __/g, "__");
-			text = text.replace(/\ \*\*/g, "**");
+				// strip all tags keeping only span and strong
+				text = striptags(text, ["span", "strong"]);
 
-			//replacing all @@@@ with line breaks
-			text = text.replace(/@@@@/g, "\n")
+				// strip out strong (keeping span) and replace strong with **
+				text = striptags(text, ["span"], "**");
 
-			//decode and trim
-			text = he.decode(text).trim();
+				// find a replace span with underline tags with __
+				text = text.replace(/(\<span style\=\"text-decoration: underline;\"\>)(.*?)\<\/span\>/g, "__$2__");
 
-			workout = new Workout({date: item.pubDate, name: name, text: text, html: html, valid: true, updated: new Date()});
+				//makings sure any remaining html tags are completely gone
+				text = striptags(text, []);
+
+				// removing any trailing (extra) spaces
+				text = text.replace(/\ @@@@/g, "@@@@");
+				text = text.replace(/\ __/g, "__");
+				text = text.replace(/\ \*\*/g, "**");
+
+				//replacing all @@@@ with line breaks
+				text = text.replace(/@@@@/g, "\n")
+
+				//decode and trim
+				text = he.decode(text).trim();
+
+				workout = new Workout({date: item.pubDate, name: name, text: text, html: html, valid: true, updated: new Date()});
+
+				Workout.findOneAndUpdate(
+					{date: item.pubDate, name: name},
+					workout,
+					{upsert: true, new: true, runValidators: true},
+					function (err, doc) { // callback
+					if (err) {
+						console.log("no insert");
+					} else {
+						console.log("success insert");
+						contentNotification();
+						inserts = true;
+					}
+				});
+
+				console.log("Loop Count: " + loop_cnt);
+
+			}
 
 			loop_cnt += 1;
 
-			Workout.findOneAndUpdate(
-				{date: item.pubDate, name: name},
-				workout,
-				{upsert: true, new: true, runValidators: true},
-				function (err, doc) { // callback
-				if (err) {
-					console.log("no insert");
-				} else {
-					console.log("success insert");
-					contentNotification();
-					inserts = true;
-				}
-				loop_cnt -= 1
-			});
-
-			console.log("Loop Count: " + loop_cnt);
 		});
 	 
 	})();
